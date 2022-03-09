@@ -16,6 +16,10 @@ const routes = [
   {
     path: '/gender',
     component: () => import('../components/gender.vue')
+  },
+  {
+    path: '/height',
+    component: () => import('../components/height.vue')
   }
 ]
 
