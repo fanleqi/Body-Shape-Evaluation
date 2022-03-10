@@ -30,6 +30,7 @@ export default {
 <style lang="scss" scoped>
 .age {
   h3 {
+    margin-top: 60px;
     text-align: center;
     margin-bottom: 42px;
   }

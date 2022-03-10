@@ -25,6 +25,7 @@ export default {
 <style lang="scss" scoped>
 .gender {
   h3 {
+    margin-top: 60px;
     text-align: center;
     margin-bottom: 85px;
   }
