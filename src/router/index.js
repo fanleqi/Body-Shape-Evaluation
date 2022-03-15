@@ -20,7 +20,19 @@ const routes = [
   {
     path: '/height',
     component: () => import('../components/height.vue')
-  }
+  },
+  {
+    path: '/weight',
+    component: () => import('../components/weight.vue')
+  },
+  {
+    path: '/bodyFatRate',
+    component: () => import('../components/bodyFatRate.vue')
+  },
+  {
+    path: '/waistline',
+    component: () => import('../components/waistline.vue')
+  },
 ]
 
 const router = new VueRouter({

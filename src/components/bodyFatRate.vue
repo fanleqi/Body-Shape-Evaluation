@@ -1,9 +1,9 @@
 <template>
   <div class="height">
     <div class="back" @click="back">上一题</div>
-    <h3>您的身高是?</h3>
+    <h3>请输入您的体脂率</h3>
     <div class="form">
-      <input type="number" placeholder="请输入身高" v-model="height"/> <strong>cm</strong>
+      <input type="number" placeholder="请输入体脂率" v-model="bodyFatRate"/> <strong>%</strong>
       <button @click="confirm">确认</button>
     </div>
   </div>
@@ -13,7 +13,7 @@
 export default {
   data(){
     return{
-      height:null
+      bodyFatRate:null
     }
   },
   methods: {
@@ -22,9 +22,9 @@ export default {
     },
     confirm(){
       let user = JSON.parse(localStorage.getItem("userInfo"))
-      let obj = {...user,"height": this.height/100}
+      let obj = {...user,"bodyFatRate": this.bodyFatRate/1}
       localStorage.setItem("userInfo",JSON.stringify(obj));
-      this.$router.push('/weight')
+      this.$router.push('/waistline')
     }
   },
 }
