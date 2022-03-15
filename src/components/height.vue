@@ -3,20 +3,29 @@
     <div class="back" @click="back">上一题</div>
     <h3>您的身高是?</h3>
     <div class="form">
-      <input type="number" placeholder="请输入身高" /> cm
+      <input type="number" placeholder="请输入身高" v-model="height"/> <strong>cm</strong>
+      <button @click="confirm">确认</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      height:null
+    }
+  },
   methods: {
     back() {
       this.$router.go(-1)
     },
-    next(path) {
-      this.$router.push(path)
-    },
+    confirm(){
+      let user = JSON.parse(localStorage.getItem("userInfo"))
+      let obj = {...user,"height": this.height/100}
+      localStorage.setItem("userInfo",JSON.stringify(obj));
+      //this.$router.push('/height')
+    }
   },
 }
 </script>
@@ -31,7 +40,7 @@ export default {
   .form {
     text-align: center;
     input {
-      width: 200px;
+      width: 120px;
       height: 48px;
       border-radius: 20px;
       border: 3px solid black;
@@ -41,6 +50,19 @@ export default {
       text-align: center;
       background-color: #f5f5f5;
     }
+  }
+  button{
+    width: 120px;
+    height: 50px;
+    background-color: #fdf052;
+    border-radius: 20px;
+    border: none;
+    text-align: center;
+    font-weight: 600;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
   }
 }
 </style>

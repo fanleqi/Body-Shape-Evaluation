@@ -2,9 +2,9 @@
   <div class="gender">
     <div class="back" @click="back">上一题</div>
     <h3>您的性别是？</h3>
-    <div class="selection" @click="next('/height')">
-      <button>男</button>
-      <button>女</button>
+    <div class="selection">
+      <button @click="log(0)">男</button>
+      <button @click="log(1)">女</button>
     </div>
   </div>
 </template>
@@ -15,9 +15,12 @@ export default {
     back() {
       this.$router.go(-1)
     },
-    next(path){
-      this.$router.push(path)
-    }
+    log(index) {
+      let user = JSON.parse(localStorage.getItem("userInfo"))
+      let obj = {...user,"gender": index}
+      localStorage.setItem("userInfo",JSON.stringify(obj));
+      this.$router.push('/height')
+    },
   },
 }
 </script>
