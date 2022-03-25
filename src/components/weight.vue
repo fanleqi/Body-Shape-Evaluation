@@ -1,5 +1,5 @@
 <template>
-  <div class="height">
+  <div class="weight">
     <div class="back" @click="back">上一题</div>
     <h3>您的体重是?</h3>
     <div class="form">
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.height {
+.weight {
   h3 {
     margin-top: 60px;
     text-align: center;

@@ -1,5 +1,5 @@
 <template>
-  <div class="height">
+  <div class="waistline">
     <div class="back" @click="back">上一题</div>
     <h3>请输入您的腰围</h3>
     <div class="form">
@@ -24,14 +24,14 @@ export default {
       let user = JSON.parse(localStorage.getItem("userInfo"))
       let obj = {...user,"waistline": this.waistline/1}
       localStorage.setItem("userInfo",JSON.stringify(obj));
-      //this.$router.push('/height')
+      this.$router.push('/result')
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.height {
+.waistline {
   h3 {
     margin-top: 60px;
     text-align: center;

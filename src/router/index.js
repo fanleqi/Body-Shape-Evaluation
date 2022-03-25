@@ -33,6 +33,10 @@ const routes = [
     path: '/waistline',
     component: () => import('../components/waistline.vue')
   },
+  {
+    path: '/result',
+    component: () => import('../views/result.vue')
+  },
 ]
 
 const router = new VueRouter({

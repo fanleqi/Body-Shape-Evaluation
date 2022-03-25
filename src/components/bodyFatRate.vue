@@ -1,5 +1,5 @@
 <template>
-  <div class="height">
+  <div class="body-fat-rate">
     <div class="back" @click="back">上一题</div>
     <h3>请输入您的体脂率</h3>
     <div class="form">
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.height {
+.body-fat-rate {
   h3 {
     margin-top: 60px;
     text-align: center;
