@@ -2,7 +2,7 @@
   <div class="result">
     <div class="block">
       <h1>身体形态报告</h1>
-      <p>您的身体形态为【肥胖】，【需要警惕】</p>
+      <p>您的身体形态为【{{bodyShape}}】，【需要警惕】</p>
       <p>
         【警示】
         您的腰围在80-85之间/大于85（女），属于向心性肥胖前期/向心性肥胖，心血管风险增加。<br />
@@ -28,7 +28,11 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      bodyShape:null,
+      bodyShapeWarn:null,
+      bodyShapeList:['消瘦','低体重','低脂肪肌肉型','标准','低体重高脂肪','运动型','肌肉型超重','超重','临界肥胖','脂肪过量','肥胖']
+    }
   },
   created() {
     this.getShapeList()
@@ -44,7 +48,12 @@ export default {
         shapeList.age,
         shapeList.bodyFatRate
       )
-      console.log(BMILevel, bodyFatRateLevel)
+      this.bodyShape = this.getBodyShape(BMILevel, bodyFatRateLevel)
+      let waistlineWarn = this.getWaistWarn(
+        shapeList.gender,
+        shapeList.waistline
+      )
+      console.log(BMILevel, bodyFatRateLevel, this.bodyShape, waistlineWarn)
     },
     getBMILevel(bmi) {
       if (bmi < 18.5) {
@@ -184,7 +193,7 @@ export default {
             return '非常高'
           }
         }
-      }else{
+      } else {
         if (ageLevel === 1) {
           if (bodyFatRate <= 12) {
             return '非常低'
@@ -296,11 +305,71 @@ export default {
         }
       }
     },
-    // getBodyShape(BMILevel,bodyFatRateLevel){
-      
-    // },
-    // getWaistWarn(waistline){
+    getBodyShape(BMILevel, bodyFatRateLevel) {
+      if (BMILevel === '偏轻') {
+        if (bodyFatRateLevel === '非常低' || bodyFatRateLevel === '低') {
+          return '消瘦'
+        } else if (bodyFatRateLevel === '偏低' || bodyFatRateLevel === '平均') {
+          return '低体重'
+        } else {
+          return '低体重高脂肪'
+        }
+      } else if (BMILevel === '标准') {
+        if (bodyFatRateLevel === '非常低' || bodyFatRateLevel === '低') {
+          return '低脂肪肌肉型'
+        } else if (bodyFatRateLevel === '偏低' || bodyFatRateLevel === '平均') {
+          return '标准'
+        } else if (bodyFatRateLevel === '偏高' || bodyFatRateLevel === '高') {
+          return '脂肪过量'
+        } else {
+          return '肥胖'
+        }
+      } else if (BMILevel === '超重') {
+        if (bodyFatRateLevel === '非常低') {
+          return '运动型'
+        } else if (bodyFatRateLevel === '低' || bodyFatRateLevel === '偏低') {
+          return '肌肉型超重'
+        } else if (bodyFatRateLevel === '平均') {
+          return '超重'
+        } else if (bodyFatRateLevel === '偏高') {
+          return '临界肥胖'
+        } else {
+          return '肥胖'
+        }
+      } else {
+        if (
+          bodyFatRateLevel === '非常低' ||
+          bodyFatRateLevel === '低' ||
+          bodyFatRateLevel === '偏低'
+        ) {
+          return '运动型'
+        } else if (bodyFatRateLevel === '平均') {
+          return '临界肥胖'
+        } else {
+          return '肥胖'
+        }
+      }
+    },
+    getWaistWarn(gender, waistline) {
+      if (gender === 0) {
+        if (waistline >= 85 && waistline < 90) {
+          return '向心性肥胖前期'
+        } else if (waistline >= 90) {
+          return '向心性肥胖'
+        }
+      } else {
+        if (waistline >= 80 && waistline < 85) {
+          return '向心性肥胖前期'
+        } else if (waistline >= 85) {
+          return '向心性肥胖'
+        }
+      }
+    },
+    getBodyShapeComment(){
 
+    },
+    // getBodyShapeWarn(bodyShape){
+    //   if(bodyShape === '')
     // }
   },
 }
