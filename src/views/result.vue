@@ -449,7 +449,7 @@ export default {
 .result {
   padding-top: 20px;
   .block {
-    width: 300px;
+    width: 330px;
     margin-left: auto;
     margin-right: auto;
     background: #fff;

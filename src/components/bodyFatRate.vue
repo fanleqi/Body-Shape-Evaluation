@@ -51,7 +51,7 @@ export default {
   .form {
     text-align: center;
     input {
-      width: 120px;
+      width: 125px;
       height: 48px;
       border-radius: 20px;
       border: 3px solid black;

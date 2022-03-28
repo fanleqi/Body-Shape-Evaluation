@@ -12,5 +12,8 @@ body {
   color: #201917;
   padding: 10px;
   font-size: 16px;
+  button{
+    color: #201917;
+  }
 }
 </style>
