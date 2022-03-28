@@ -430,12 +430,12 @@ export default {
     getBMILevelWarn(BMILevel) {
       if (BMILevel === '超重' || BMILevel === '过重') {
         this.BMILevelWarn =
-          '增加了患脂肪肝、糖尿病及其他慢性病的风险。均衡饮食+合理运动是控制体重的唯一健康有效方式。'
+          '增加了患脂肪肝、糖尿病及其他慢性病的风险。均衡饮食+合理运动是控制体重的唯一健康有效方式~'
       } else if (BMILevel === '标准') {
         this.BMILevelWarn = '处于正常范围，请继续均衡饮食+合理运动~'
       } else {
         this.BMILevelWarn =
-          '体重过轻，影响体质，可能导致免疫力低下、月经不调或闭经、骨质疏松、贫血、抑郁等病症。'
+          '体重过轻，影响体质，可能导致免疫力低下、月经不调或闭经、骨质疏松、贫血、抑郁等病症哦！'
       }
     },
     getGender(gender) {
