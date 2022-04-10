@@ -1,6 +1,6 @@
 <template>
   <div class="waistline">
-    <div class="back" @click="back">上一题</div>
+    <div class="back" @click="back">&lt;上一题</div>
     <h3>请输入您的腰围</h3>
     <div class="form">
       <input type="number" placeholder="请输入腰围" v-model="waistline" @input="inputFn"/>

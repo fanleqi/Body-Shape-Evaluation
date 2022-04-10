@@ -1,11 +1,12 @@
 <template>
   <div class="body-fat-rate">
-    <div class="back" @click="back">上一题</div>
+    <div class="back" @click="back">&lt;上一题</div>
     <h3>请输入您的体脂率</h3>
     <div class="form">
       <input type="number" placeholder="请输入体脂率" v-model="bodyFatRate" @input="inputFn"/>
       <strong>%</strong>
       <button @click="confirm" :class="{ active: isActive }">确认</button>
+      <a @click="skip" class="skip">不清楚，跳过&gt;</a>
     </div>
   </div>
 </template>
@@ -28,6 +29,9 @@ export default {
       }else{
         this.isActive = false
       }
+    },
+    skip(){
+      this.$router.push('/waistline')
     },
     confirm() {
       if (this.bodyFatRate){
@@ -74,6 +78,11 @@ export default {
     margin-left: auto;
     margin-right: auto;
     margin-top: 24px;
+    margin-bottom: 10px;
+  }
+  .skip{
+    font-size: 14px;
+    border-bottom:1px solid grey;
   }
   .active {
     background-color: #fdf052;

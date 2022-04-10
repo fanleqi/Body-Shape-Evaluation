@@ -1,6 +1,6 @@
 <template>
   <div class="height">
-    <div class="back" @click="back">上一题</div>
+    <div class="back" @click="back">&lt;上一题</div>
     <h3>您的身高是?</h3>
     <div class="form">
       <input

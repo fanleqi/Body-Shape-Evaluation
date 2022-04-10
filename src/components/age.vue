@@ -1,8 +1,8 @@
 <template>
   <div class="age">
-    <div class="back" @click="back">返回</div>
+    <div class="back" @click="back">&lt;返回</div>
     <h3>您的年龄在？</h3>
-    <button v-for="(item, index) in selection" :key="index" @click="log(index)">
+    <button v-for="(item, index) in selection" :key="index" @click="storage(index)">
       {{ item }}
     </button>
   </div>
@@ -13,13 +13,8 @@ export default {
   data() {
     return {
       selection: [
-        '17岁及以下',
-        '18-25岁', //1
-        '26-35岁',
-        '36-45岁',
-        '46-55岁',
-        '56-65岁',
-        '66岁及以上',
+        '30岁及以下', //0
+        '30岁以上', //1
       ],
     }
   },
@@ -27,7 +22,7 @@ export default {
     back() {
       this.$router.go(-1)
     },
-    log(index) {
+    storage(index) {
       let obj = {"age": index}
       localStorage.setItem("userInfo",JSON.stringify(obj));
       this.$router.push('/gender')

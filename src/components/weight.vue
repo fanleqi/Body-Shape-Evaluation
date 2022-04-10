@@ -1,6 +1,6 @@
 <template>
   <div class="weight">
-    <div class="back" @click="back">上一题</div>
+    <div class="back" @click="back">&lt;上一题</div>
     <h3>您的体重是?</h3>
     <div class="form">
       <input type="number" placeholder="请输入体重" v-model="weight" @input="inputFn"/>

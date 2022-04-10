@@ -1,23 +1,46 @@
 <template>
   <div class="gender">
-    <div class="back" @click="back">上一题</div>
+    <div class="back" @click="back">&lt;上一题</div>
     <h3>您的性别是？</h3>
     <div class="selection">
-      <button @click="log(0)">男</button>
-      <button @click="log(1)">女</button>
+      <button v-for="(item, index) in selection" :key="index" @click="storage(index)">
+      {{ item }}
+    </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      selection: [
+        '男', //0
+        '女', //1
+      ],
+    }
+  },
   methods: {
     back() {
       this.$router.go(-1)
     },
-    log(index) {
+    storage(index) {
       let user = JSON.parse(localStorage.getItem("userInfo"))
-      let obj = {...user,"gender": index}
+      let ageGenderType = null
+      if(user.age == 0){
+        if(index == 0){
+          ageGenderType = 0 //30岁及以下男性
+        }else{
+          ageGenderType = 1 //30岁及以下女性
+        }
+      }else{
+        if(index == 0){
+          ageGenderType = 2 //30岁以上男性
+        }else{
+          ageGenderType = 3 //30岁以上女性
+        }
+      }
+      let obj = {...user, "ageGenderType": ageGenderType}
       localStorage.setItem("userInfo",JSON.stringify(obj));
       this.$router.push('/height')
     },

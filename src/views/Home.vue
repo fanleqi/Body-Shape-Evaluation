@@ -5,22 +5,38 @@
       <h1>CHINESE ADULT</h1>
       <h1>BODY SHAPE</h1>
       <h1>ASSESSMENT</h1>
-      <h1>成人身体形态测评</h1>
+      <h1>中国成人身体形态测评</h1>
     </div>
     <ul>
       <li>● 以下人群可能不适合本测评：</li>
-      <li>未满18周岁群体,怀孕或哺乳中群体以及老人群体</li>
+      <li>未满18周岁群体，怀孕或哺乳中群体以及老人群体</li>
     </ul>
     <div class="line downline"></div>
-    <button @click="start">开始测评</button>
+    <button @click="start" class="start">开始新测评</button>
+    <button @click="history" class="history" :class="{ active: hasResult }">前次测评结果</button>
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      hasResult:false,
+    }
+  },
+  created(){
+    this.getResult()
+  },
   methods: {
     start(){
       this.$router.push('/age')
+    },
+    history(){
+      this.$router.push('/result')
+    },
+    getResult(){
+      let shapeList = JSON.parse(localStorage.getItem('userInfo'))
+      Object.keys(shapeList).length >= 5 ? this.hasResult = true : this.hasResult = false
     }
   },
 }
@@ -38,27 +54,26 @@ export default {
     margin-top: 15px;
   }
   .title {
-    margin-top: 36px;
-    margin-bottom: 27px;
+    margin-top: 32px;
+    margin-bottom: 32px;
   }
   .downline {
-    margin-top: 36px;
+    margin-top: 32px;
   }
   h1 {
+    margin-bottom: 6px;
+  }
+  .start{
+    margin-top: 116px;
+    background-color: #fdf052;
     font-weight: 600;
   }
-  button{
-    width: 228px;
-    height: 50px;
-    background-color: #fdf052;
-    border-radius: 10px;
-    border: none;
-    text-align: center;
+  .history{
+    margin-top: 10px;
     font-weight: 600;
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 116px;
+  }
+  .active{
+    background-color: #fdf052;
   }
 }
 </style>
