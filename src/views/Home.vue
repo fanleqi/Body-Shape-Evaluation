@@ -13,7 +13,7 @@
     </ul>
     <div class="line downline"></div>
     <button @click="start" class="start">开始新测评</button>
-    <button @click="history" class="history" :class="{ active: hasResult }">前次测评结果</button>
+    <button @click="history" class="history" :class="{ active: hasResult }">前往测评结果</button>
   </div>
 </template>
 
