@@ -3,8 +3,14 @@
     <div class="back" @click="back">&lt;上一题</div>
     <h3>请输入您的体脂率</h3>
     <div class="form">
-      <input type="number" placeholder="请输入体脂率" v-model="bodyFatRate" @input="inputFn"/>
+      <input
+        type="number"
+        placeholder="请输入体脂率"
+        v-model="bodyFatRate"
+        @input="inputFn"
+      />
       <strong>%</strong>
+      <span :class="{ hint: isHint }">请输入正确的体脂率</span>
       <button @click="confirm" :class="{ active: isActive }">确认</button>
       <a @click="skip" class="skip">不清楚，跳过&gt;</a>
     </div>
@@ -17,32 +23,35 @@ export default {
     return {
       bodyFatRate: null,
       isActive: false,
-    }
+      isHint: false,
+    };
   },
   methods: {
     back() {
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
     inputFn() {
       if (this.bodyFatRate) {
-        this.isActive = true
-      }else{
-        this.isActive = false
+        this.isActive = true;
+      } else {
+        this.isActive = false;
       }
     },
-    skip(){
-      this.$router.push('/waistline')
+    skip() {
+      this.$router.push('/waistline');
     },
     confirm() {
-      if (this.bodyFatRate){
-        let user = JSON.parse(localStorage.getItem('userInfo'))
-        let obj = { ...user, bodyFatRate: this.bodyFatRate / 1 }
-        localStorage.setItem('userInfo', JSON.stringify(obj))
-        this.$router.push('/waistline')
+      if (this.bodyFatRate > 0 && this.bodyFatRate < 100) {
+        let user = JSON.parse(localStorage.getItem('userInfo'));
+        let obj = { ...user, bodyFatRate: this.bodyFatRate / 1 };
+        localStorage.setItem('userInfo', JSON.stringify(obj));
+        this.$router.push('/waistline');
+      } else {
+        this.isHint = true;
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -66,23 +75,31 @@ export default {
       background-color: #f5f5f5;
       margin-right: 4px;
     }
+    span {
+      margin-top: 2px;
+      display: block;
+      color: transparent;
+    }
+    .hint {
+      color: red;
+    }
+    button {
+      width: 120px;
+      height: 50px;
+      border-radius: 20px;
+      border: none;
+      text-align: center;
+      font-weight: 600;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 8px;
+      margin-bottom: 10px;
+    }
   }
-  button {
-    width: 120px;
-    height: 50px;
-    border-radius: 20px;
-    border: none;
-    text-align: center;
-    font-weight: 600;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 24px;
-    margin-bottom: 10px;
-  }
-  .skip{
+  .skip {
     font-size: 14px;
-    border-bottom:1px solid grey;
+    border-bottom: 1px solid grey;
   }
   .active {
     background-color: #fdf052;

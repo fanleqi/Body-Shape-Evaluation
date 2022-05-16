@@ -69,7 +69,6 @@ export default {
       }
       let WHtR = shapeList.waistline / (shapeList.height * 100).toFixed(2)
       WHtR >= 0.5 ? (this.warn = true) : ''
-      // shapeList.bodyFatRate = shapeList.bodyFatRate.toFixed()
     },
     getBFShape(ageGenderType, BF) {
       if (ageGenderType === 0) {

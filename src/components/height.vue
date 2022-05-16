@@ -10,6 +10,7 @@
         @input="inputFn"
       />
       <strong>cm</strong>
+      <span :class="{ hint: isHint }">请输入正确的身高</span>
       <button @click="confirm" :class="{ active: isActive }">确认</button>
     </div>
   </div>
@@ -21,29 +22,33 @@ export default {
     return {
       height: null,
       isActive: false,
-    }
+      isHint: false,
+    };
   },
   methods: {
     back() {
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
     inputFn() {
       if (this.height) {
-        this.isActive = true
-      }else{
-        this.isActive = false
+        this.isActive = true;
+      } else {
+        this.isActive = false;
       }
     },
     confirm() {
-      if (this.height) {
-        let user = JSON.parse(localStorage.getItem('userInfo'))
-        let obj = { ...user, height: this.height / 100 }
-        localStorage.setItem('userInfo', JSON.stringify(obj))
-        this.$router.push('/weight')
+      if (this.height > 0 && this.height < 300) {
+        this.isHint = false;
+        let user = JSON.parse(localStorage.getItem('userInfo'));
+        let obj = { ...user, height: this.height / 100 };
+        localStorage.setItem('userInfo', JSON.stringify(obj));
+        this.$router.push('/weight');
+      } else {
+        this.isHint = true;
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -67,18 +72,26 @@ export default {
       background-color: #f5f5f5;
       margin-right: 4px;
     }
-  }
-  button {
-    width: 120px;
-    height: 50px;
-    border-radius: 20px;
-    border: none;
-    text-align: center;
-    font-weight: 600;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 24px;
+    span {
+      margin-top: 2px;
+      display: block;
+      color: transparent;
+    }
+    .hint {
+      color: red;
+    }
+    button {
+      width: 120px;
+      height: 50px;
+      border-radius: 20px;
+      border: none;
+      text-align: center;
+      font-weight: 600;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 8px;
+    }
   }
   .active {
     background-color: #fdf052;
