@@ -29,7 +29,11 @@ export default {
   },
   methods: {
     start(){
-      this.$router.push('/age')
+      if(this.hasResult){
+        confirm('新测评将覆盖历次测评，确认开始新测评？') ? this.$router.push('/age') : ''
+      }else{
+        this.$router.push('/age')
+      }
     },
     history(){
       this.$router.push('/result')
