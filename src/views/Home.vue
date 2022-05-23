@@ -36,7 +36,7 @@ export default {
       }
     },
     history(){
-      this.$router.push('/result')
+      this.hasResult ? this.$router.push('/result') : ''
     },
     getResult(){
       let shapeList = JSON.parse(localStorage.getItem('userInfo'))
