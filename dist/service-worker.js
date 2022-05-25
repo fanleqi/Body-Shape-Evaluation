@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.e819e694591f3ba3dd3674a02c51ca73.js"
+  "precache-manifest.9994fd03fbd3742a25509560eba54042.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "health-evaluation"});
